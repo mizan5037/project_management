@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Employee;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employee = Employee::all();
+        return view('admin.employee.show')->withEmployees($employee);
     }
 
     /**
@@ -24,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+         return view('admin.employee.create');
     }
 
     /**
@@ -35,7 +37,25 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name' =>'required',
+            'phone' =>'required',
+            'address' =>'required',
+            'email' =>'required',
+            'designation' =>'required',
+        ]);
+
+        $employee = new Employee();
+
+        $employee->name = $request->name;
+        $employee->phone = $request->phone;
+        $employee->email = $request->email;
+        $employee->address = $request->address;
+        $employee->designation = $request->designation;
+
+        $employee->save();
+
+        return redirect(route('admin.employee.index'));
     }
 
     /**

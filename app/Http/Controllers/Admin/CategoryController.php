@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Category;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -14,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.show');
+        $category = Category::all();
+        return view('admin.category.show')->withCategories($category);
     }
 
     /**
@@ -24,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -35,7 +38,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request,[
+            'name' => 'required',
+            
+            ]);
+        $category = new Category;
+        $category->name = $request->name;
+       
+        $category->save();
+        Toastr::success('Successfully Created', 'success');
+
+        return redirect(route('admin.category.index'));
     }
 
     /**

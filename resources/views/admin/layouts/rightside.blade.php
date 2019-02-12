@@ -5,24 +5,24 @@
                         
                         <li data-theme="indigo">
                             <div class="indigo"></div>
-                            <span>Add Category</span>
+                            <span><a href="{{ route('admin.category.create') }}">Add Category</a></span>
                         </li>
 
                         <li data-theme="indigo">
                             <div class="indigo"></div>
-                            <span>Add Service</span>
+                            <span><a href="{{ route('admin.service.create') }}">Add Service</a></span>
                         </li>
                         <li data-theme="indigo">
                             <div class="indigo"></div>
-                            <span>Add Client</span>
+                            <span><a href="{{ route('admin.client.create') }}">Add Client</a></span>
                         </li>
                         <li data-theme="indigo">
                             <div class="indigo"></div>
-                            <span>Add Employee</span>
+                            <span><a href="{{ route('admin.employee.create') }}">Add Employee</a></span>
                         </li>
                         <li data-theme="indigo">
                             <div class="indigo"></div>
-                            <span>Add Project</span>
+                            <span><a href="{{ route('admin.project.create') }}">Add Project</a></span>
                         </li>
                         
                     </ul>

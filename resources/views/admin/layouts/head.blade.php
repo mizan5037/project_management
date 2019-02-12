@@ -27,4 +27,8 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('admin/css/themes/all-themes.css') }} " rel="stylesheet" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+    @stack('css')
+
 </head>

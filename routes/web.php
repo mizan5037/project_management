@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function (){
     Route::get('dashboard','AdminController@index')->name('dashboard');
     Route::resource('category','CategoryController');
+    Route::resource('service','ServiceController');
+    Route::resource('employee','EmployeeController');
+    Route::resource('client','ClientController');
+    Route::resource('project','ProjectController');
     
 
 });

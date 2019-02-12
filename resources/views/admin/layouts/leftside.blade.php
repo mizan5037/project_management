@@ -37,20 +37,24 @@
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
-
-                        <a href="index.html">
+                        <a href="{{ route('admin.category.index') }}">
+                            <i class="material-icons">home</i>
+                            <span>Category</span>
+                        </a>
+                        <a href="{{ route('admin.client.index') }}">
                             <i class="material-icons">home</i>
                             <span>Client</span>
                         </a>
-                         <a href="index.html">
+                      
+                         <a href="{{ route('admin.employee.index') }}">
                             <i class="material-icons">home</i>
                             <span>Employee</span>
                         </a>
-                         <a href="index.html">
+                         <a href="{{ route('admin.project.index') }}">
                             <i class="material-icons">home</i>
                             <span>Project</span>
                         </a>
-                        <a href="index.html">
+                        <a href="{{ route('admin.service.index') }}">
                             <i class="material-icons">home</i>
                             <span>Service</span>
                         </a>
@@ -73,4 +77,4 @@
                 </div>
             </div>
             <!-- #Footer -->
-        </aside>
+</aside>

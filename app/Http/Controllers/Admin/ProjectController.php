@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Client;
+use App\Model\Admin\Employee;
+use App\Model\Admin\Service;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -14,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.project.show');
     }
 
     /**
@@ -24,7 +27,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $client = Client::all();
+        $service = Service::all();
+        $employee = Employee::all();
+        return view('admin.project.create')
+                   ->withClients($client)
+                   ->withServices($service)
+                   ->withEmployees($employee);
     }
 
     /**
