@@ -20,4 +20,9 @@ class Project extends Model
     {
     	return $this->belongsToMany('App\Model\Admin\Service','project_services')->withTimestamps();
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany('App\Model\Admin\Category','project_categories')->withTimestamps();
+    }
 }

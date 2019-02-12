@@ -79,7 +79,7 @@
             <!-- #END# Exportable Table -->
         </div>
 	@endsection
-	@push('script')
+	@push('js')
 	<script src="{{ asset('admin/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('admin/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('admin/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>

@@ -2,16 +2,17 @@
 @push('css')
 	 <link href="{{ asset('admin/plugins/bootstrap-select/css/bootstrap-select.css') }} " rel="stylesheet" />
 	
-	  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 @endpush
 
 @section('main-content')
 
         <!-- Vertical Layout | With Floating Label -->
+        @include('includes.messages')
         <form action="{{ route('admin.project.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row clearfix">
@@ -32,15 +33,15 @@
                                 </div>
 
                                <div class="form-group form-float">
-                               	 <label class="form-label">Advance</label>
+                               	    <label class="form-label">Advance</label>
                                     <div class="form-line">
                                         <input type="text" id="advance" class="form-control" placeholder="Enter Advance Money" name="advance">
                                        
                                     </div>
                                 </div>
 
-                            <div class="form-group form-float">
-                            	 <label class="form-label">Due</label>
+                                <div class="form-group form-float">
+                            	    <label class="form-label">Due</label>
                                     <div class="form-line">
                                         <input type="text" id="due" class="form-control" placeholder="Enter Product Due" name="due">
                                        
@@ -50,14 +51,14 @@
 
 
                                  <div class="form-group form-float">
-                                    <h2 class="card-inside-title">Range</h2>
+                                    <h2 class="card-inside-title">Project Time</h2>
                                     <div class="input-daterange input-group" id="bs_datepicker_range_container">
                                         <div class="form-line">
-                                            <input class="date form-control" type="text">
+                                            <input class="date form-control" placeholder="Project start date" name="start" type="text">
                                         </div>
                                         <span class="input-group-addon">to</span>
                                         <div class="form-line">
-                                            <input class="date form-control" type="text">
+                                            <input class="date form-control" placeholder="Project submission date" name="end" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +73,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <label for="employee">Select employee</label>
-                                    <select name="employee[]" id="employee" class="form-control show-tick" data-live-search="true" multiple>
+                                    <select name="employee" id="employee" class="form-control show-tick" data-live-search="true">
                                         @foreach($employees as $employee)
                                             <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                         @endforeach
@@ -83,7 +84,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <label for="service">Select services</label>
-                                    <select name="service[]" id="service" class="form-control show-tick" data-live-search="true" multiple>
+                                    <select name="service" id="service" class="form-control show-tick" data-live-search="true">
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
@@ -94,9 +95,20 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <label for="client">Select clients</label>
-                                    <select name="client[]" id="client" class="form-control show-tick" data-live-search="true" multiple>
+                                    <select name="client" id="client" class="form-control show-tick" data-live-search="true">
                                         @foreach($clients as $client)
                                             <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="category">Select Project Category</label>
+                                    <select name="name" id="category" class="form-control show-tick" data-live-search="true">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
