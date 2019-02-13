@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\Service;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
@@ -14,7 +16,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admin.service.show');
+        $service = Service::all();
+        return view('admin.service.show')->withServices($service);
     }
 
     /**
@@ -25,6 +28,8 @@ class ServiceController extends Controller
     public function create()
     {
          return view('admin.service.create');
+
+         
     }
 
     /**
@@ -36,6 +41,17 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'name' => 'required',
+            
+            ]);
+        $service = new Service;
+        $service->name = $request->name;
+       
+        $service->save();
+        Toastr::success('Successfully Created', 'success');
+
+        return redirect(route('admin.service.index'));
     }
 
     /**
@@ -57,7 +73,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service = Service::where('id',$id)->first();
+        return view('admin.service.edit')->withService($service);
     }
 
     /**
@@ -69,7 +86,17 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request,[
+            'name' => 'required',
+            
+            ]);
+        $service = Service::where('id',$id)->first();
+        $service->name = $request->name;
+       
+        $service->save();
+        Toastr::success('Updated Successfully', 'success');
+
+        return redirect(route('admin.service.index'));
     }
 
     /**
@@ -80,6 +107,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+         Service::where('id',$id)->delete();
+        return redirect()->back();
     }
 }

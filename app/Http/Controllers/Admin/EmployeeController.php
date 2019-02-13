@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Employee;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -77,7 +78,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+         $employee = Employee::where('id',$id)->first();
+        return view('admin.employee.edit')->withEmployee($employee);
     }
 
     /**
@@ -89,7 +91,26 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' =>'required',
+            'phone' =>'required',
+            'address' =>'required',
+            'email' =>'required',
+            'designation' =>'required',
+        ]);
+
+         $employee = Employee::where('id',$id)->first();
+
+        $employee->name = $request->name;
+        $employee->phone = $request->phone;
+        $employee->email = $request->email;
+        $employee->address = $request->address;
+        $employee->designation = $request->designation;
+
+        $employee->save();
+        Toastr::success('Updated Successfully', 'success');
+
+        return redirect(route('admin.employee.index'));
     }
 
     /**
@@ -100,6 +121,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Employee::where('id',$id)->delete();
+        Toastr::success('Updated Successfully', 'success');
+        return redirect()->back();
     }
 }

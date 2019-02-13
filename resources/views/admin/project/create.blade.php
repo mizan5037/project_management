@@ -73,7 +73,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <label for="employee">Select employee</label>
-                                    <select name="employee" id="employee" class="form-control show-tick" data-live-search="true">
+                                    <select name="employee[]" id="employee" class="form-control show-tick" data-live-search="true" multiple>
                                         @foreach($employees as $employee)
                                             <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                         @endforeach

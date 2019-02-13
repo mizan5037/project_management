@@ -6,31 +6,23 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Add Project Category
+                                Add Project Service
                             </h2>
                          
                         </div>
                          @include('includes.messages')
                         <div class="body">
-                            <form action="{{ route('admin.category.update',$category->id) }}" method="post">
+                            <form action="{{ route('admin.service.store') }}" method="post">
                             	{{csrf_field()}}
-                                @method('put')
-                                <label for="email_address">Category</label>
+                                <label for="email_address">Service</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="name" value="{{$category->name}}" class="form-control" placeholder="Enter your project category">
+                                        <input type="text" name="name" class="form-control" placeholder="Enter your project category">
                                     </div>
                                 </div>
                                 
                                 <br>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <a href='{{ route('admin.category.index') }}' class="btn btn-warning">Back</a>
-                                    <input type="submit" class="btn btn-primary m-t-15 waves-effect">
-                                    </div>
-                                </div>
-                                
-
+                                <input type="submit" class="btn btn-primary m-t-15 waves-effect">
                             </form>
                         </div>
                     </div>

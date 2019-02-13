@@ -4023,6 +4023,10 @@ section.content {
   background: #007d72;
   color: #fff; }
 
+  td{
+    width: 200px;
+  }
+
 .datepicker.datepicker-dropdown.dropdown-menu {
   margin-top: 0 !important; }
 

@@ -1,7 +1,10 @@
 @extends('admin.app')
-@section('head-section')
+@push('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}">
-@endsection
+    <style type="text/css">
+       
+    </style>
+@endpush
 @section('main-content')
 <div class="container-fluid">
             
@@ -25,6 +28,7 @@
                                         <tr>
                                             <th>#ID</th>
                                             <th>Project</th>
+                                            <th>Description</th>
                                             <th>Client</th>
                                             <th>Service</th>
                                             <th>Employee</th>
@@ -43,6 +47,7 @@
                                         	 
                                              <th>#ID</th>
                                             <th>Project</th>
+                                             <th>Description</th>
                                             <th>Clint</th>
                                             <th>Service</th>
                                             <th>Employee</th>
@@ -60,6 +65,7 @@
                                         <tr>
                                            <td>{{ $loop->index + 1 }}</td>
                                             <td>{{$project->name}}</td>
+                                            <td>{{strip_tags($project->description)}}</td>
                                             <td>{{$project->client}}</td>
                                             <td>{{$project->service}}</td>
                                             <td>{{$project->employee}}</td>
@@ -71,8 +77,22 @@
                                            
                                             
                                             
-                                            <td><a href=""><span class="glyphicon glyphicon-trash"></a></td>
-                                            <td><a href=""><span class="glyphicon glyphicon-trash"></a></td>
+                                             <td><a href="{{ route('admin.project.edit',$project->id) }}"><span class="glyphicon glyphicon-edit"></a></td>
+                                    <td>
+                                        <form id="delete-form-{{ $project->id }}" method="post" action="{{ route('admin.project.destroy',$project->id) }}" style="display: none">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form>
+                                        <a href="" onclick="
+                                            if(confirm('Are you sure, You Want to delete this?'))
+                                            {
+                                            event.preventDefault();
+                                            document.getElementById('delete-form-{{ $project->id }}').submit();
+                                            }
+                                            else{
+                                            event.preventDefault();
+                                            }" ><span class="glyphicon glyphicon-trash"></span></a>
+                                        </td>
                                        
                             
                                             

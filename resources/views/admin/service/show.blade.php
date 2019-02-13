@@ -21,18 +21,7 @@
                     <h2>
                     EXPORTABLE TABLE
                     </h2>
-                    <ul class="header-dropdown m-r--5">
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="material-icons">more_vert</i>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="javascript:void(0);">Action</a></li>
-                                <li><a href="javascript:void(0);">Another action</a></li>
-                                <li><a href="javascript:void(0);">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    
                 </div>
                 <div class="body">
                     <div class="table-responsive">
@@ -55,14 +44,15 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                                @foreach($categories as $category)
+                                @foreach($services as $service)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td>{{$category->name}}</td>
+                                    <td>{{$service->name}}</td>
                                     
-                                    <td><a href="{{ route('admin.category.edit',$category->id) }}"><span class="glyphicon glyphicon-edit"></a></td>
+                                    
+                                    <td><a href="{{ route('admin.service.edit',$service->id) }}"><span class="glyphicon glyphicon-edit"></a></td>
                                     <td>
-                                        <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('admin.category.destroy',$category->id) }}" style="display: none">
+                                        <form id="delete-form-{{ $service->id }}" method="post" action="{{ route('admin.service.destroy',$service->id) }}" style="display: none">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                         </form>
@@ -70,7 +60,7 @@
                                             if(confirm('Are you sure, You Want to delete this?'))
                                             {
                                             event.preventDefault();
-                                            document.getElementById('delete-form-{{ $category->id }}').submit();
+                                            document.getElementById('delete-form-{{ $service->id }}').submit();
                                             }
                                             else{
                                             event.preventDefault();

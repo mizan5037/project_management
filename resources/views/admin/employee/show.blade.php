@@ -62,8 +62,23 @@
                                             <td>{{$employee->designation}}</td>
                                             
                                             
-                                            <td><a href=""><span class="glyphicon glyphicon-trash"></a></td>
-                                            <td><a href=""><span class="glyphicon glyphicon-trash"></a></td>
+                                                 
+                                    <td><a href="{{ route('admin.employee.edit',$employee->id) }}"><span class="glyphicon glyphicon-edit"></a></td>
+                                    <td>
+                                        <form id="delete-form-{{ $employee->id }}" method="post" action="{{ route('admin.employee.destroy',$employee->id) }}" style="display: none">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form>
+                                        <a href="" onclick="
+                                            if(confirm('Are you sure, You Want to delete this?'))
+                                            {
+                                            event.preventDefault();
+                                            document.getElementById('delete-form-{{ $employee->id }}').submit();
+                                            }
+                                            else{
+                                            event.preventDefault();
+                                            }" ><span class="glyphicon glyphicon-trash"></span></a>
+                                        </td>
                                        
                             
                                             

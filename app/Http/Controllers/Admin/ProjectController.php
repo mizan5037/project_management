@@ -85,7 +85,7 @@ class ProjectController extends Controller
 
         
 
-         // $project->clients()->attach($request->employees);
+          //$project->clients()->attach($request->employees);
          // $project->employees()->attach($request->services);
          // $project->services()->attach($request->clients);
          // $project->categories()->attach($request->categories);
@@ -114,7 +114,17 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::where('id',$id)->first();
+        $client = Client::all();
+        $service = Service::all();
+        $employee = Employee::all();
+        $category = Category::all();
+        return view('admin.project.edit')
+                    ->withClients($client)
+                    ->withProject($project)
+                   ->withServices($service)
+                   ->withEmployees($employee)
+                   ->withCategories($category);
     }
 
     /**
@@ -126,7 +136,46 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request,[
+            'name' => 'required',
+            'start'=>'required',
+            'due'=>'required',
+            'end'=>'required',
+            'advance'=>'required',
+            'price'=>'required',
+            'employee'=>'required',
+            'service'=>'required',
+            
+            'client'=>'required',
+            'body'=>'required',
+        ]);
+
+        $project = Project::where('id',$id)->first();
+
+        $project->name = Category::where('id',$request->name)->value('name');
+        $project->client = Client::where('id',$request->client)->value('name');
+        $project->service = Service::where('id',$request->service)->value('name');
+        $project->employee = Employee::where('id',$request->employee)->value('name');
+        $project->description = $request->body;
+        $project->price = $request->price;
+        $project->advance = $request->advance;
+        $project->due = $request->due;
+        $project->start_date = $request->start;
+        $project->end_date = $request->end;
+    
+
+        $project->save();
+
+        
+
+          //$project->clients()->attach($request->employees);
+         // $project->employees()->attach($request->services);
+         // $project->services()->attach($request->clients);
+         // $project->categories()->attach($request->categories);
+
+        Toastr::success('Project Updated Successfully','success');
+
+        return redirect(route('admin.project.index'));
     }
 
     /**
@@ -137,6 +186,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::where('id',$id)->delete();
+        Toastr::success('Project Deleted Successfully', 'success');
+        return redirect()->back();
     }
 }

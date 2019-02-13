@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Model\Admin\Client;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -74,7 +75,8 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::where('id',$id)->first();
+        return view('admin.client.edit')->withClient($client);
     }
 
     /**
@@ -86,7 +88,26 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'company' => 'required',
+
+       ]);
+
+       $client = Client::where('id',$id)->first();
+
+       $client->name = $request->name;
+       $client->phone = $request->phone;
+       $client->email = $request->email;
+       $client->address = $request->address;
+       $client->company_name = $request->company;
+
+       $client->save();
+       Toastr::success('Updated Successfully', 'success');
+       return redirect(route('admin.client.index'));
     }
 
     /**
@@ -97,6 +118,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Client::where('id',$id)->delete();
+        Toastr::success('Updated Successfully', 'success');
+        return redirect()->back();
     }
 }
