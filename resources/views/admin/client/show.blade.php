@@ -5,10 +5,7 @@
 @section('main-content')
 <div class="container-fluid">
     <div class="block-header">
-        <h2>
-        JQUERY DATATABLES
-        <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small>
-        </h2>
+       
     </div>
     <!-- Basic Examples -->
     
@@ -20,7 +17,10 @@
                 <div class="header">
                     <h2>
                     CLIENT LIST
+                     <a class="pull-right btn btn-success"  href="{{ route('admin.client.create') }}">Add Client</a>
                     </h2>
+
+
                     
                 </div>
                 <div class="body">

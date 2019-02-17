@@ -54,11 +54,11 @@
                                     <h2 class="card-inside-title">Project Time</h2>
                                     <div class="input-daterange input-group" id="bs_datepicker_range_container">
                                         <div class="form-line">
-                                            <input class="date form-control" placeholder="Project start date" name="start" type="text">
+                                            <input class="date form-control" autocomplete="off" placeholder="Project start date" name="start" type="text">
                                         </div>
                                         <span class="input-group-addon">to</span>
                                         <div class="form-line">
-                                            <input class="date form-control" placeholder="Project submission date" name="end" type="text">
+                                            <input class="date form-control" autocomplete="off" placeholder="Project submission date" name="end" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <label for="employee">Select employee</label>
-                                    <select name="employee[]" id="employee" class="form-control show-tick" data-live-search="true" multiple>
+                                    <select name="employees[]" id="employee" class="form-control show-tick" data-live-search="true" multiple>
                                         @foreach($employees as $employee)
                                             <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                         @endforeach
@@ -84,7 +84,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <label for="service">Select services</label>
-                                    <select name="service" id="service" class="form-control show-tick" data-live-search="true">
+                                    <select name="services[]" id="service" class="form-control show-tick" data-live-search="true" multiple>
                                         @foreach($services as $service)
                                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                                         @endforeach
@@ -171,7 +171,7 @@
 
     $('.date').datepicker({  
 
-       format: 'mm-dd-yyyy'
+       format: 'yyyy-mm-dd'
 
      });  
 

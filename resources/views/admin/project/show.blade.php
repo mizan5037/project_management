@@ -17,9 +17,10 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                PROJECT DETAIL
+                                PROJECT LIST
+                                <a class="pull-right btn btn-success"  href="{{ route('admin.project.create') }}">Add Project</a>
                             </h2>
-                       
+                      
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -30,13 +31,12 @@
                                             <th>Project</th>
                                             <th>Description</th>
                                             <th>Client</th>
-                                            <th>Service</th>
-                                            <th>Employee</th>
                                             <th>Price</th>
                                             <th>Due</th>
                                             <th>Advance</th>                                          
                                             <th>Start Date</th>
                                             <th>End Date</th>
+                                            <th>Details</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                             
@@ -48,16 +48,17 @@
                                              <th>#ID</th>
                                             <th>Project</th>
                                              <th>Description</th>
-                                            <th>Clint</th>
-                                            <th>Service</th>
-                                            <th>Employee</th>
+                                            <th>Client</th>
+                                         
                                             <th>Price</th>
                                             <th>Due</th>
                                             <th>Advance</th>
                                             <th>Start Date</th>
                                             <th>End Date</th>
+                                            <th>Details</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
+
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -66,14 +67,14 @@
                                            <td>{{ $loop->index + 1 }}</td>
                                             <td>{{$project->name}}</td>
                                             <td>{{strip_tags($project->description)}}</td>
-                                            <td>{{$project->client}}</td>
-                                            <td>{{$project->service}}</td>
-                                            <td>{{$project->employee}}</td>
+                                            <td>{{$project->client_name}}</td>
+                                            
                                             <td>{{$project->price}}</td>
                                             <td>{{$project->due}}</td>
                                             <td>{{$project->advance}}</td>
                                             <td>{{$project->start_date}}</td>
                                             <td>{{$project->end_date}}</td>
+                                            <td><a href="{{ route('admin.project.show',$project->id) }}"><button class="btn btn-success">Details</button></a><td>
                                            
                                             
                                             

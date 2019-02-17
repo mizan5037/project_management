@@ -6,10 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    public function clients()
+     protected $fillable = [
+        'name',
+        'client_name',
+        'description',
+        'price',
+        'due',
+        'advance',
+        'start_date',
+        'client_id',
+        'end_date',
+        'created_at',
+        'updated_at',
+    ];
+protected $dateFormat = 'Y-m-d'; 
+   
+    public function client()
     {
-    	return $this->belongsToMany('App\Model\Admin\Client','project_clients')->withTimestamps();
+        return $this->belongsTo('App\Model\Admin\Client');
     }
+
 
    public function employees()
     {

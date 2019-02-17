@@ -5,10 +5,7 @@
 @section('main-content')
 <div class="container-fluid">
     <div class="block-header">
-        <h2>
-        JQUERY DATATABLES
-        <small>Taken from <a href="https://datatables.net/" target="_blank">datatables.net</a></small>
-        </h2>
+       
     </div>
     <!-- Basic Examples -->
     
@@ -19,9 +16,10 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                    EXPORTABLE TABLE
+                    SERVICE LIST
+                       <a class="pull-right btn btn-success" style="padding-bottom: " href="{{ route('admin.service.create') }}">Add Service</a>
                     </h2>
-                    
+                 
                 </div>
                 <div class="body">
                     <div class="table-responsive">

@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Model\Admin\Category;
+use App\Model\Admin\Client;
+use App\Model\Admin\Employee;
+use App\Model\Admin\Project;
+use App\Model\Admin\Service;
 class HomeController extends Controller
 {
     /**
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+       
     }
 
     /**
@@ -23,6 +27,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $project = Project::all();
+        $employee = Employee::all();
+        $category = Category::all();
+        $service = Service::all();
+        $client = Client::all();
+        return view('admin.home')
+             ->withEmployee($employee)
+             ->withClient($client)
+             ->withService($employee)
+             ->withProject($project);
     }
 }

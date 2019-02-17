@@ -22,6 +22,7 @@ class ProjectController extends Controller
     {
         $project = Project::all();
 
+
         return view('admin.project.show')->withProjects($project);
     }
 
@@ -60,8 +61,8 @@ class ProjectController extends Controller
             'end'=>'required',
             'advance'=>'required',
             'price'=>'required',
-            'employee'=>'required',
-            'service'=>'required',
+            'employees'=>'required',
+            'services'=>'required',
             
             'client'=>'required',
             'body'=>'required',
@@ -70,9 +71,10 @@ class ProjectController extends Controller
         $project = new Project();
 
         $project->name = Category::where('id',$request->name)->value('name');
-        $project->client = Client::where('id',$request->client)->value('name');
-        $project->service = Service::where('id',$request->service)->value('name');
-        $project->employee = Employee::where('id',$request->employee)->value('name');
+        
+        $project->client_name = Client::where('id',$request->client)->value('name');
+        $project->client_id = Client::where('id',$request->client)->value('id');
+             
         $project->description = $request->body;
         $project->price = $request->price;
         $project->advance = $request->advance;
@@ -83,11 +85,13 @@ class ProjectController extends Controller
 
         $project->save();
 
+
+
         
 
-          //$project->clients()->attach($request->employees);
-         // $project->employees()->attach($request->services);
-         // $project->services()->attach($request->clients);
+        // $project->clients()->attach($request->employees);
+          $project->employees()->attach($request->employees);
+          $project->services()->attach($request->services);
          // $project->categories()->attach($request->categories);
 
         Toastr::success('Project Successfully Saved :)','Success');
@@ -103,7 +107,19 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::where('id',$id)->first();
+
+        $client =  Client::find(Project::where('id',$id)->value('client_id'));
+        
+        
+        $services = Project::find($id)->services;
+        $employees = Project::find($id)->employees;
+        
+        return view('admin.project.single')
+                                            ->withProject($project)
+                                            ->withServices($services)
+                                            ->withClient($client)
+                                            ->withEmployees($employees);
     }
 
     /**
@@ -143,8 +159,8 @@ class ProjectController extends Controller
             'end'=>'required',
             'advance'=>'required',
             'price'=>'required',
-            'employee'=>'required',
-            'service'=>'required',
+            'employees'=>'required',
+            'services'=>'required',
             
             'client'=>'required',
             'body'=>'required',
@@ -153,9 +169,10 @@ class ProjectController extends Controller
         $project = Project::where('id',$id)->first();
 
         $project->name = Category::where('id',$request->name)->value('name');
-        $project->client = Client::where('id',$request->client)->value('name');
-        $project->service = Service::where('id',$request->service)->value('name');
-        $project->employee = Employee::where('id',$request->employee)->value('name');
+        $project->client_name = Client::where('id',$request->client)->value('name');
+        $project->client_id = Client::where('id',$request->client)->value('id');
+        //$project->service = Service::where('id',$request->service)->value('name');
+        //$project->employee = Employee::where('id',$request->employee)->value('name');
         $project->description = $request->body;
         $project->price = $request->price;
         $project->advance = $request->advance;
@@ -169,8 +186,8 @@ class ProjectController extends Controller
         
 
           //$project->clients()->attach($request->employees);
-         // $project->employees()->attach($request->services);
-         // $project->services()->attach($request->clients);
+          $project->employees()->attach($request->employees);
+         $project->services()->attach($request->services);
          // $project->categories()->attach($request->categories);
 
         Toastr::success('Project Updated Successfully','success');
