@@ -61,6 +61,7 @@ class ProjectController extends Controller
             'end'=>'required',
             'advance'=>'required',
             'price'=>'required',
+            'deadline'=>'required',
             'employees'=>'required',
             'services'=>'required',
             
