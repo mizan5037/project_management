@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title','All Client')
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}">
 @endpush

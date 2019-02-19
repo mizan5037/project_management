@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title','Create Category')
 @section('main-content')
 
  <div class="row clearfix">

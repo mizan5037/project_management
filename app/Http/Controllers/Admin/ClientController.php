@@ -41,8 +41,8 @@ class ClientController extends Controller
     {
        $this->validate($request,[
             'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'phone' => 'required|unique:clients',
+            'email' => 'required|unique:clients',
             'address' => 'required',
             'company' => 'required',
 
@@ -90,8 +90,8 @@ class ClientController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'phone' => 'required|unique:clients',
+            'email' => 'required|unique:clients',
             'address' => 'required',
             'company' => 'required',
 

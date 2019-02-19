@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title','Create Project')
 @push('css')
 	 <link href="{{ asset('admin/plugins/bootstrap-select/css/bootstrap-select.css') }} " rel="stylesheet" />
 	

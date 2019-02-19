@@ -1,5 +1,5 @@
 @extends('admin.app')
-
+@section('title','Edit Emloyee')
 @section('main-content')
  <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,9 +12,9 @@
                         </div>
                          @include('includes.messages')
                         <div class="body">
-                            <form action="{{ route('admin.employee.store',$employee->id) }}" method="post">
+                            <form action="{{ route('admin.employee.update',$employee->id) }}" method="post">
                             	{{csrf_field()}}
-                               
+                               @method('put')
                                <div class="row">
                                	<div class="col-md-6">
                                		 <label for="name">Employee</label>

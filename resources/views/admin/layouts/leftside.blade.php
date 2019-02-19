@@ -48,10 +48,10 @@
                 <ul class="list">
                         <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                      {{--   <a href="{{ route('home') }}">
+                        <a href="{{ route('home') }}">
                             <i class="material-icons">home</i>
                             <span>Home</span>
-                        </a> --}}
+                        </a>
                         <a href="{{ route('admin.category.index') }}">
                             <i class="material-icons">home</i>
                             <span>Category</span>
@@ -81,7 +81,7 @@
 
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons"></i>
+                            <i class="material-icons">home</i>
                             <span>Report</span>
                         </a>
                         <ul class="ml-menu">

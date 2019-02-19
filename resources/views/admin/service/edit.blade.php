@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title','Edit Service')
 @section('main-content')
 
  <div class="row clearfix">

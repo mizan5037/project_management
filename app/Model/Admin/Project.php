@@ -19,7 +19,7 @@ class Project extends Model
         'created_at',
         'updated_at',
     ];
-protected $dateFormat = 'Y-m-d'; 
+
    
     public function client()
     {

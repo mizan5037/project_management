@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->integer('price');
             $table->integer('advance');
-
+           
             $table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->integer('due');

@@ -1,5 +1,5 @@
 @extends('admin.app')
-
+@section('title','Create Employee')
 @section('main-content')
  <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -35,6 +35,12 @@
                                         <input type="text" name="email" class="form-control" placeholder="Enter your employee email address">
                                     </div>
                                 </div>
+                              {{--   <label for="image">Profile Image</label>
+                                 <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="file" name="image" class="form-control" >
+                                    </div>
+                                </div> --}}
                                	</div>
                                	<div class="col-md-6">
                                		 <label for="address">Address</label>
@@ -54,7 +60,7 @@
                                
 
                                 <br>
-                                <input type="submit" class="btn btn-primary m-t-15 waves-effect">
+                                <input type="submit" {{-- style="padding-top: -50px;" --}} class="btn btn-primary ">
                                      
                                 </div>
                                 

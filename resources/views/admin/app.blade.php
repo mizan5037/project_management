@@ -59,7 +59,18 @@
     </section>
 
     <!-- Jquery Core Js -->
+    <script>
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    toastr.error('{{ $error }}','Error',{
+        closeButton:true,
+        progressBar:true,
+    });
+    @endforeach
+    @endif
+</script>
     @include('admin.layouts.footer')
+
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title','All Project')
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}">
     <style type="text/css">
@@ -66,7 +67,7 @@
                                         <tr>
                                            <td>{{ $loop->index + 1 }}</td>
                                             <td>{{$project->name}}</td>
-                                            <td>{{strip_tags($project->description)}}</td>
+                                            <td>{{strip_tags(str_limit($project->description,50) )}}</td>
                                             <td>{{$project->client_name}}</td>
                                             
                                             <td>{{$project->price}}</td>

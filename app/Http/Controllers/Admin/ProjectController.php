@@ -61,7 +61,7 @@ class ProjectController extends Controller
             'end'=>'required',
             'advance'=>'required',
             'price'=>'required',
-            'deadline'=>'required',
+            
             'employees'=>'required',
             'services'=>'required',
             
@@ -74,7 +74,7 @@ class ProjectController extends Controller
         $project->name = Category::where('id',$request->name)->value('name');
         
         $project->client_name = Client::where('id',$request->client)->value('name');
-        $project->client_id = Client::where('id',$request->client)->value('id');
+         $project->client_id = Client::where('id',$request->client)->value('id');
              
         $project->description = $request->body;
         $project->price = $request->price;
@@ -153,6 +153,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
          $this->validate($request,[
             'name' => 'required',
             'start'=>'required',
@@ -160,8 +161,8 @@ class ProjectController extends Controller
             'end'=>'required',
             'advance'=>'required',
             'price'=>'required',
-            'employees'=>'required',
-            'services'=>'required',
+            'employee'=>'required',
+            'service'=>'required',
             
             'client'=>'required',
             'body'=>'required',

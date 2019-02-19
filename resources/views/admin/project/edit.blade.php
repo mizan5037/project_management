@@ -1,4 +1,5 @@
 @extends('admin.app')
+@section('title','Edit Project')
 @push('css')
 	 <link href="{{ asset('admin/plugins/bootstrap-select/css/bootstrap-select.css') }} " rel="stylesheet" />
 	
@@ -14,8 +15,9 @@
 
         <!-- Vertical Layout | With Floating Label -->
         @include('includes.messages')
-        <form action="{{ route('admin.project.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+        <form action="{{ route('admin.project.update',$project->id) }}" method="post" enctype="multipart/form-data">
+            {{csrf_field()}}
+            @method('put')
             <div class="row clearfix">
                 <div class="col-md-6">
                     <div class="card">

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Admin\Employee;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-
+use Image;
 class EmployeeController extends Controller
 {
     /**
@@ -40,10 +40,11 @@ class EmployeeController extends Controller
     {
         $this->validate($request,[
             'name' =>'required',
-            'phone' =>'required',
+            'phone' =>'required|unique:employees',
             'address' =>'required',
-            'email' =>'required',
+            'email' =>'required|unique:employees',
             'designation' =>'required',
+            
         ]);
 
         $employee = new Employee();
@@ -53,7 +54,14 @@ class EmployeeController extends Controller
         $employee->email = $request->email;
         $employee->address = $request->address;
         $employee->designation = $request->designation;
+        if ($request->hasFile('image')) {
+                  $image = $request->file('image');
+                  $filename = time() . '.' . $image->getClientOriginalExtension();
+                  $location = public_path('images/' . $filename);
+                  Image::make($image)->resize(800, 400)->save($location);
 
+                  $employee->image = $filename;
+                }
         $employee->save();
 
         return redirect(route('admin.employee.index'));
@@ -97,6 +105,7 @@ class EmployeeController extends Controller
             'address' =>'required',
             'email' =>'required',
             'designation' =>'required',
+
         ]);
 
          $employee = Employee::where('id',$id)->first();
@@ -106,7 +115,14 @@ class EmployeeController extends Controller
         $employee->email = $request->email;
         $employee->address = $request->address;
         $employee->designation = $request->designation;
+         if ($request->hasFile('image')) {
+                  $image = $request->file('image');
+                  $filename = time() . '.' . $image->getClientOriginalExtension();
+                  $location = public_path('images/' . $filename);
+                  Image::make($image)->resize(800, 400)->save($location);
 
+                  $employee->image = $filename;
+                }
         $employee->save();
         Toastr::success('Updated Successfully', 'success');
 
