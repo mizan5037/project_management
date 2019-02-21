@@ -26,7 +26,7 @@
                                 <label for="phone">Phone</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="phone" class="form-control" value="{{$employee->phone}}"  placeholder="Enter your employee phone number">
+                                        <input type="text" name="phone" class="form-control" value=""  placeholder="Enter your employee phone number">
                                     </div>
                                  </div>
                                  <label for="email">Email</label>
